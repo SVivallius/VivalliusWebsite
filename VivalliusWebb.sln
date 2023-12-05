@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34302.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivalliusWebb-API", "VivalliusWebb-API\VivalliusWebb-API.csproj", "{E8A33575-485B-43B5-AA40-8EBC56FF03EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivalliusWebb-API", "VivalliusWebb-API\VivalliusWebb-API.csproj", "{E8A33575-485B-43B5-AA40-8EBC56FF03EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivalliusWebb-Common", "VivalliusWebb-Common\VivalliusWebb-Common.csproj", "{5F455464-E62E-444E-9C0A-007A279C5555}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivalliusWebb-Common", "VivalliusWebb-Common\VivalliusWebb-Common.csproj", "{5F455464-E62E-444E-9C0A-007A279C5555}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivalliusWebb-Services", "VivalliusWebb-Services\VivalliusWebb-Services.csproj", "{DD5E75B6-9AD3-4B42-A2D4-7888A152E49E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivalliusWebb-Services", "VivalliusWebb-Services\VivalliusWebb-Services.csproj", "{DD5E75B6-9AD3-4B42-A2D4-7888A152E49E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivalliusWebb-Server", "VivalliusWebb-Server\VivalliusWebb-Server.csproj", "{A17DCC3D-26AB-4774-877A-DDA96B4586A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivalliusWebb-Server", "VivalliusWebb-Server\VivalliusWebb-Server.csproj", "{A17DCC3D-26AB-4774-877A-DDA96B4586A7}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{725E0A12-C829-47B7-922B-9BF63FD29979}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A17DCC3D-26AB-4774-877A-DDA96B4586A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A17DCC3D-26AB-4774-877A-DDA96B4586A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A17DCC3D-26AB-4774-877A-DDA96B4586A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{725E0A12-C829-47B7-922B-9BF63FD29979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{725E0A12-C829-47B7-922B-9BF63FD29979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{725E0A12-C829-47B7-922B-9BF63FD29979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{725E0A12-C829-47B7-922B-9BF63FD29979}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
