@@ -7,22 +7,30 @@ services:
       context: .
       dockerfile: VivalliusWebb-API/Dockerfile
     ports:
-        - 4811:80
+      - 4980:80
+      - 4981:443
     environment:
-        - "Development"
+      - "Development"
+    networks:
+      - internal
+
   vivalliusSql:
     image: mysql:latest
     environment:
-      MYSQL_DATABASE: "vivallius"
-      MYSQL_USER: "Admin"
-      MYSQL_PASSWORD: "sksa"
-      MYSQL_ROOT_PASSWORD: "sksa1955-12-05"
+      MYSQL_DATABASE: vivallius
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: sksa
+      MYSQL_ROOT_PASSWORD: sksa1955-12-05
     volumes:
-        - "vivalliusStorage:/var/lib/mysql"
+      - "vivalliusStorage:/var/lib/mysql"
     restart: always
     ports:
-        - 4810:3301
+      - 4982:3306
+    networks:
+      - internal
+
 volumes:
   vivalliusStorage:
+
 networks:
   internal:
