@@ -74,6 +74,9 @@ namespace VivalliusWebb_Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Secret")
                         .IsRequired()
                         .HasColumnType("longtext");

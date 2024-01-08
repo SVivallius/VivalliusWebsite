@@ -36,8 +36,4 @@
     <ProjectReference Include="..\VivalliusWebb-Services\VivalliusWebb-Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="AdminControllers\" />
-  </ItemGroup>
-
 </Project>

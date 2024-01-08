@@ -11,8 +11,8 @@ using VivalliusWebb_Server;
 namespace VivalliusWebb_Server.Migrations
 {
     [DbContext(typeof(VivalliusContext))]
-    [Migration("20231207143123_version_0.5")]
-    partial class version_05
+    [Migration("20231211134755_version_0.1")]
+    partial class version_01
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,6 +76,9 @@ namespace VivalliusWebb_Server.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Secret")
                         .IsRequired()
