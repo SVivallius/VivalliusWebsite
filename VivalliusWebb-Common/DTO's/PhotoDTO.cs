@@ -5,6 +5,6 @@ public class PhotoDTO
     public string Title { get; set; }
     public string Description { get; set; }
     public DateTime PhotoTaken { get; set; }
-    public Uri PhotoPath { get; set; }
+    public string PhotoPath { get; set; }
     public List<int> ModelPersonIds { get; set; }
 }

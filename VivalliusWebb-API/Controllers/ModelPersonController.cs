@@ -5,7 +5,7 @@ using VivalliusWebb_Services.Interfaces;
 
 namespace VivalliusWebb_API.Controllers;
 [ApiController]
-public class ModelPersonController
+public class ModelPersonController : ControllerBase
 {
     private readonly VivalliusContext _db;
     private readonly IMapper _mapper;

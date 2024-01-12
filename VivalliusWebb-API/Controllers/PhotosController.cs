@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
 using VivalliusWebb_Server.Entities;
 using VivalliusWebb_Services.Interfaces;
+using VivalliusWebb_Services.Services;
 namespace VivalliusWebb_API.Controllers;
 
 [ApiController]
@@ -45,14 +45,20 @@ public class PhotosController : ControllerBase
 
     [Route("1/admin/[controller]")]
     [HttpPost]
-    public async Task<IResult> Post([FromForm]NewPhotoDTO photo)
+    public async Task<IResult> PostAsync([FromForm]NewPhotoDTO photo)
     {
+        // TODO: Add security
         try
         {
             // Add FileSave struct
-
+            string filePath = String.Empty;
+            using (FileStorageManager fs = new(photo.Image))
+            {
+                filePath = await fs.SaveImageAsync();
+            };
             // Add SQL add struct
             var entity = _mapper.Map<Photo>(photo);
+            entity.PhotoPath = filePath;
             await _db.Photos.AddAsync(entity);
 
             var node = typeof(Photo).Name.ToLower();
@@ -80,6 +86,32 @@ public class PhotosController : ControllerBase
             var entity = _mapper.Map<Photo>(dto);
             _db.Photos.Update(entity);
             if (await _db.SaveChangesAsync() > 0) return Results.NoContent();
+            return Results.BadRequest();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+    [HttpDelete]
+    [Route("1/admin/[controller]/{Id}")]
+    public async Task<IResult> DeleteAsync(int Id)
+    {
+
+        var entity = await _db.Photos
+            .Where(e => e.Id.Equals(Id))
+            .FirstOrDefaultAsync();
+
+        if (entity == null) return Results.NotFound();
+
+        try
+        {
+            _db.Photos.Remove(entity);
+            if (await _db.SaveChangesAsync() > 0)
+            {
+                System.IO.File.Delete(entity.PhotoPath);
+                return Results.NoContent();
+            }
             return Results.BadRequest();
         }
         catch (Exception)

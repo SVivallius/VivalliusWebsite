@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using VivalliusWebb_Server;
-
 namespace VivalliusWebb_API;
 public class Program
 {
