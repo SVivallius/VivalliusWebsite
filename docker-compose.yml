@@ -1,18 +1,29 @@
 version: '3.4'
 
 services:
+  vivallius-frontend:
+    build:
+      context: .
+      dockerfile: Vivallius-frontend/Dockerfile
+    ports:
+      - 4982:8080
+    networks:
+      - internal
+      # Add external networking pointing to NGINX here
+    volumes:
+      - "vivalliusMedia:/src/media"
+    
   vivalliuswebb-api:
     image: ${DOCKER_REGISTRY-}vivalliuswebbapi
     build:
       context: .
       dockerfile: VivalliusWebb-API/Dockerfile
     ports:
-      - 4980:80
-      - 4981:443
-    environment:
-      - "Development"
+      - 4980:8080
     networks:
       - internal
+    volumes:
+      - "vivalliusMedia:/assets/img"
 
   vivalliusSql:
     image: mysql:latest
@@ -21,16 +32,21 @@ services:
       MYSQL_USER: admin
       MYSQL_PASSWORD: sksa
       MYSQL_ROOT_PASSWORD: sksa1955-12-05
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_COLLATION: utf8mb4_swedish_ci
     volumes:
       - "vivalliusStorage:/var/lib/mysql"
     restart: always
     ports:
-      - 4982:3306
+      - 4981:3306
     networks:
       - internal
 
 volumes:
   vivalliusStorage:
+  vivalliusMedia:
 
 networks:
   internal:
+
+  # Add External Network to NGINX here

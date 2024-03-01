@@ -7,12 +7,18 @@ public class Program
 
         // Add services to the container.
 
-        builder.Services.AddControllers();
+        builder.Services.AddControllers(opt =>
+        {
+            opt.AllowEmptyInputInBodyModelBinding = true;
+        });
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         Statics.RegisterCustomServices(builder.Services);
         Statics.ConfigureAutomapper(builder.Services);
+
+        // Add Cors-policies
+        Statics.DisableCors(builder.Services);
 
         string connString = builder.Environment.IsDevelopment() ?
             builder.Configuration.GetConnectionString("Development") : builder.Configuration.GetConnectionString("Production");
@@ -23,14 +29,12 @@ public class Program
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+        app.UseSwagger();
+        app.UseSwaggerUI();
 
         //app.UseHttpsRedirection();
-        app.UseAuthorization();
+        //app.UseAuthorization();
+        app.UseCors("AllowAll");
 
 
         app.MapControllers();

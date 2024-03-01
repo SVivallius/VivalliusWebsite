@@ -1,0 +1,17 @@
+.category-contact-btn{
+    display: inline-block;
+    width: auto;
+    padding: 20px 40px;
+    margin: 0 auto 70px auto;
+
+    border: 1px solid var(--button-border-col);
+    background-color: var(--button-col-base);
+}
+.category-contact-btn:hover{
+    background-color: var(--button-col-hover);
+    color: white !important
+}
+
+.category-contact-btn p {
+    font-size: larger;
+}

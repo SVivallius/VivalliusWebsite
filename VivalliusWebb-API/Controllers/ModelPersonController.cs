@@ -5,6 +5,7 @@ using VivalliusWebb_Services.Interfaces;
 
 namespace VivalliusWebb_API.Controllers;
 [ApiController]
+[Route("api/1/")]
 public class ModelPersonController : ControllerBase
 {
     private readonly VivalliusContext _db;
@@ -18,7 +19,7 @@ public class ModelPersonController : ControllerBase
     }
 
     [HttpGet]
-    [Route("1/public/[controller]")]
+    [Route("public/[controller]")]
     public async Task<IResult> GetAsync()
     {
         var entities = await _db.ModelPersons
@@ -30,7 +31,7 @@ public class ModelPersonController : ControllerBase
         return Results.Ok(dtos);
     }
     [HttpGet]
-    [Route("1/public/[controller]/{Id}")]
+    [Route("public/[controller]/{Id}")]
     public async Task<IResult> GetByIdAsync(int Id)
     {
         var entity = await _db.ModelPersons
@@ -44,7 +45,7 @@ public class ModelPersonController : ControllerBase
     // ADD SECURITY TO THE FOLLOWING SECTION ONCE IT WORKS
     //*******************************************************
     [HttpPost]
-    [Route("1/admin/[controller]")]
+    [Route("admin/[controller]")]
     public async Task<IResult> PostAsync([FromForm]ModelPersonDTO dto)
     {
         try
@@ -65,7 +66,7 @@ public class ModelPersonController : ControllerBase
         }
     }
     [HttpPut]
-    [Route("1/admin/[controller]/{Id}")]
+    [Route("admin/[controller]/{Id}")]
     public async Task<IResult> PutAsync(int Id, [FromForm]ModelPersonDTO dto)
     {
         var isInDb = (await _db.ModelPersons.Where(e => e.Id.Equals(Id)).FirstOrDefaultAsync() != null) ?
@@ -86,7 +87,7 @@ public class ModelPersonController : ControllerBase
         }
     }
     [HttpDelete]
-    [Route("1/admin/[controller]/{Id}")]
+    [Route("admin/[controller]/{Id}")]
     public async Task<IResult> DeleteAsync(int Id)
     {
         try

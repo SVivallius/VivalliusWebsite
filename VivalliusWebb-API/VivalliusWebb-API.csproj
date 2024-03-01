@@ -36,4 +36,8 @@
     <ProjectReference Include="..\VivalliusWebb-Services\VivalliusWebb-Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="assets\img\" />
+  </ItemGroup>
+
 </Project>

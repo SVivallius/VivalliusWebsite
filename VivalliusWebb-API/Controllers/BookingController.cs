@@ -5,6 +5,7 @@ using VivalliusWebb_Services.Interfaces;
 
 namespace VivalliusWebb_API.Controllers;
 [ApiController]
+[Route("api/1/")]
 public class BookingController : ControllerBase
 {
     private readonly VivalliusContext _db;
@@ -19,16 +20,17 @@ public class BookingController : ControllerBase
     }
 
     [HttpPost]
-    [Route("1/public/[controller]")]
-    public async Task<IResult> PostAsync([FromForm]BookingDTO dto)
+    [Route("public/[controller]")]
+    public async Task<IResult> PostAsync([FromBody]BookingDTO formData)
     {
         try
         {
-            var entity = _mapper.Map<Booking>(dto);
+            var entity = _mapper.Map<Booking>(formData);
             await _db.Bookings.AddAsync(entity);
 
             if (await _db.SaveChangesAsync() > 0)
             {
+
                 var node = typeof(Booking).Name.ToLower();
                 return Results.NoContent();
             }
@@ -45,7 +47,7 @@ public class BookingController : ControllerBase
     //*******************************************************
 
     [HttpGet]
-    [Route("1/admin/[controller]")]
+    [Route("admin/[controller]")]
     public async Task<IResult> GetAsync()
     {
         var entities = await _db.Bookings.ToListAsync();
@@ -54,7 +56,7 @@ public class BookingController : ControllerBase
     }
 
     [HttpGet]
-    [Route("1/admin/[controller]/{Id}")]
+    [Route("admin/[controller]/{Id}")]
     public async Task<IResult> GetByIdAsync(int Id)
     {
         var entity = await _db.Bookings
@@ -66,7 +68,7 @@ public class BookingController : ControllerBase
         return Results.Ok(dto);
     }
     [HttpDelete]
-    [Route("1/admin/[controller]/{Id}")]
+    [Route("admin/[controller]/{Id}")]
     public async Task<IResult> DeleteAsync(int Id)
     {
         var entity = await _db.Bookings

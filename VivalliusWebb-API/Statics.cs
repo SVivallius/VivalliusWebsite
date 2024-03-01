@@ -2,6 +2,8 @@
 using VivalliusWebb_Common.DTO_s;
 using VivalliusWebb_Common.Models;
 using VivalliusWebb_Server.Entities;
+using VivalliusWebb_Services.Interfaces;
+using VivalliusWebb_Services.Services;
 
 namespace VivalliusWebb_API;
 public static class Statics
@@ -16,6 +18,10 @@ public static class Statics
                         opt => opt.MapFrom(
                             src => src.ModelPersons.Select(
                                 e => e.Id)));
+                cfg.CreateMap<NewPhotoDTO, Photo>()
+                    .ForMember(dest => dest.ModelPersons,
+                        opt => opt.MapFrom(
+                            src => src.ModelPersonIds));
                 cfg.CreateMap<PhotoDTO, Photo>()
                     .ForMember(dest => dest.ModelPersons,
                         opt => opt.MapFrom(
@@ -42,6 +48,38 @@ public static class Statics
 
     public static void RegisterCustomServices(IServiceCollection services)
     {
+        services.AddScoped<IBouncer, Bouncer>();
+    }
 
+    public static void ConfigureCors(IServiceCollection services)
+    {
+        services.AddCors(opt =>
+        {
+            opt.AddPolicy("InternalOrigins", builder =>
+            {
+                string[] origins =
+                {
+                    "http://localhost:*",
+                    "https://localhost:*",
+                    "http:vivallius-frontend:*",
+                    "https:vivallius-frontend:*"
+                };
+
+                builder.WithOrigins(origins);
+            });
+        });
+    }
+    public static void DisableCors(IServiceCollection services)
+    {
+        services.AddCors(opt =>
+        {
+            opt.AddPolicy("AllowAll", builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
+        });
     }
 }

@@ -19,7 +19,7 @@ public class FileStorageManager : IDisposable
             try
             {
                 filePath = (iteration == 0) ?
-                    $"{basePath}/img/{_file.FileName}" : $"{basePath}/img/{_file.FileName}({iteration})";
+                    $"{basePath}/img/{_file.FileName}" : $"{basePath}/img/{_file.FileName}_{iteration}";
                 isSuccessfullySaved = await TryPerformSaveAsync(filePath);
             }
             catch (Exception)
@@ -28,6 +28,12 @@ public class FileStorageManager : IDisposable
             }
         }
         return filePath;
+    }
+
+    public void DeleteImage(string fileName)
+    {
+        if (File.Exists(basePath + fileName))
+            File.Delete(fileName);
     }
 
     private async Task<bool> TryPerformSaveAsync(string filePath)

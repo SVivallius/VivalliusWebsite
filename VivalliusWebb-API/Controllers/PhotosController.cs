@@ -5,6 +5,7 @@ using VivalliusWebb_Services.Services;
 namespace VivalliusWebb_API.Controllers;
 
 [ApiController]
+[Route("api/1/")]
 public class PhotosController : ControllerBase
 {
     private readonly VivalliusContext _db;
@@ -17,7 +18,7 @@ public class PhotosController : ControllerBase
         _bouncer = bouncer;
     }
 
-    [Route("1/public/[controller]")]
+    [Route("public/[controller]")]
     [HttpGet]
     public async Task<IResult> GetAll()
     {
@@ -26,7 +27,7 @@ public class PhotosController : ControllerBase
         var Dtos = _mapper.Map<List<PhotoDTO>>(entities);
         return Results.Ok(Dtos);
     }
-    [Route("1/public/[controller]/{Id}")]
+    [Route("public/[controller]/{Id}")]
     [HttpGet]
     public async Task<IResult> GetById(int Id)
     {
@@ -43,22 +44,28 @@ public class PhotosController : ControllerBase
     // ADD SECURITY TO THE FOLLOWING SECTION ONCE IT WORKS
     //*******************************************************
 
-    [Route("1/admin/[controller]")]
+    [Route("admin/[controller]")]
     [HttpPost]
     public async Task<IResult> PostAsync([FromForm]NewPhotoDTO photo)
     {
         // TODO: Add security
-        try
+        string filePath = String.Empty;
+        using (FileStorageManager fs = new(photo.Image))
+            try
         {
             // Add FileSave struct
-            string filePath = String.Empty;
-            using (FileStorageManager fs = new(photo.Image))
-            {
-                filePath = await fs.SaveImageAsync();
-            };
+            filePath = await fs.SaveImageAsync();
             // Add SQL add struct
             var entity = _mapper.Map<Photo>(photo);
-            entity.PhotoPath = filePath;
+            entity.PhotoPath = photo.Image.Name;
+            if (photo.ModelPersonIds != null && photo.ModelPersonIds.Count > 0)
+            {
+                List<ModelPerson> tempStorage = await _db.ModelPersons
+                    .Where(e => photo.ModelPersonIds
+                    .Contains(e.Id))
+                    .ToListAsync();
+                entity.ModelPersons = tempStorage;
+            }
             await _db.Photos.AddAsync(entity);
 
             var node = typeof(Photo).Name.ToLower();
@@ -66,6 +73,7 @@ public class PhotosController : ControllerBase
 
             // Return data according to success or fail
             if (await _db.SaveChangesAsync() > 0) return Results.Created($"1/public/{node}/{entity.Id}", entity);
+            fs.DeleteImage(photo.Image.Name);
             return Results.BadRequest();
         }
         catch (Exception)
@@ -74,7 +82,7 @@ public class PhotosController : ControllerBase
         }
     }
     [HttpPut]
-    [Route("1/admin/[controller]/{Id}")]
+    [Route("admin/[controller]/{Id}")]
     public async Task<IResult> UpdateAsync(int Id, [FromForm]PhotoDTO dto)
     {
         var isInDatabase = await _db.Photos
@@ -94,7 +102,7 @@ public class PhotosController : ControllerBase
         }
     }
     [HttpDelete]
-    [Route("1/admin/[controller]/{Id}")]
+    [Route("admin/[controller]/{Id}")]
     public async Task<IResult> DeleteAsync(int Id)
     {
 
