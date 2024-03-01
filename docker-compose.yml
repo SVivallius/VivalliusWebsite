@@ -2,16 +2,17 @@ version: '3.4'
 
 services:
   vivallius-frontend:
+    image: ${DOCKER_REGISTRY-}vivallius-frontend
     build:
-      context: .
-      dockerfile: Vivallius-frontend/Dockerfile
+      context: ./Vivallius-frontend
+      dockerfile: ./Dockerfile
     ports:
       - 4982:8080
     networks:
       - internal
       # Add external networking pointing to NGINX here
     volumes:
-      - "vivalliusMedia:/src/media"
+      - "vivalliusMedia:/app/src/media"
     
   vivalliuswebb-api:
     image: ${DOCKER_REGISTRY-}vivalliuswebbapi
