@@ -3,6 +3,7 @@ import './styles/Booking.css'
 import { useContext, useState } from 'react'
 import MobileContext from '../assets/MobileContext.jsx'
 import { Link } from 'react-router-dom'
+import { HttpRequest } from '../assets/HttpAgent'
 
 function Booking() {
     const genres = ['Boudoir', 'Porträtt', 'Bröllop', 'Modell', 'Annat']
@@ -32,26 +33,29 @@ function Booking() {
             },
             body: JSON.stringify(formData)
         }
-        await fetch('http://localhost:4980/api/1/public/booking', requestOptions)
-        .then(response => {
-            switch (response.status){
-                case 200, 201, 202, 204:
-                    alert("Tack för att du tar kontakt med mig! Jag återkommer till dig så snart jag kan!");
-                    break;
-                case 400:
-                    alert("Något av fälten är inkorrekt ifyllda! Vänligen korrigera och försök igen.");
-                    break;
-                case 401:
-                    alert("En otillåten förfrågan har utförts!");
-                    break;
-                case 500, 501, 502, 503, 504, 505:
-                    alert("Ett serverfel har uppstått! Vänligen vänta några minuter eller ring gällande ditt ärende.");
-                    break;
-                default:
-                    alert("Ett oväntat fel har uppstått! Vänligen återkom senare.");
-                    break;
-            }
-        })
+        HttpRequest('1/public/booking', requestOptions)
+            .then((response) => {
+                switch (response.status){
+                    case 200, 201, 202, 204:
+                        alert("Tack för att du tar kontakt med mig! Jag återkommer till dig så snart jag kan!");
+                        break;
+                    case 400:
+                        alert("Något av fälten är inkorrekt ifyllda! Vänligen korrigera och försök igen.");
+                        break;
+                    case 401:
+                        alert("En otillåten förfrågan har utförts!");
+                        break;
+                    case 500, 501, 502, 503, 504, 505:
+                        alert("Ett serverfel har uppstått! Vänligen vänta några minuter eller ring gällande ditt ärende.");
+                        break;
+                    default:
+                        alert("Ett oväntat fel har uppstått! Vänligen återkom senare.");
+                        break;
+                }
+            })
+            .catch((error) => {
+                
+            })
     }
 
     return (

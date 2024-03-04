@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUri = 'http://vivalliuswebb-api:8080/api/' // NEEDS TO BE FULL URL.
+const baseUri = 'http://localhost:4980/api/'
 
 export async function HttpRequest(endpoint, requestOptions){
     try{
@@ -12,7 +12,7 @@ export async function HttpRequest(endpoint, requestOptions){
 
 export async function FormRequest(endpoint, requestBody, headers){
     try{
-        const { data } = await axios.post(baseUri + endpoint, requestBody, headers)
+        const { data } = await axios.post(endpoint, requestBody, headers)
         return data
     } catch (event) {
         return event

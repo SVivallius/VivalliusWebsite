@@ -21,7 +21,7 @@ function Boudoir() {
                     <h3>Mycket intimt</h3>
                     <p>En boudoirfotografering är en väldigt intim situation. Både för modell och fotograf. Det är otroligt viktigt att  den/de som skall fotograferas känner sig trygga. Därför föreslår jag att du gärna tar med dig en person som du litar på som sällskap. Om det är önskvärt så kan även jag som fotograf ha en assistent med vid fotograferingen. Allt för att du skall känna dig trygg med att du aldrig är ensam med mig i den intima och utsatta situationen.</p>
                     <h3>Förberedelser</h3>
-                    <p>Inför en fotografering finns det en del saker att tänka på och beslut att ta. Som tex kläder, smink och plats för fotograferingen. därför ingår alltid ett förmöte där vi pratar igenom vad du vill och hur fotograferingen kommer att gå till. Jag kommer även att skicka ett dokument till dig med lite tips om hur du förbereder dig för tagningen.</p>
+                    <p>Inför en fotografering finns det en del saker att tänka på och beslut att ta. Som tex kläder, smink och plats för fotograferingen. Därför ingår alltid ett förmöte där vi pratar igenom vad du vill och hur fotograferingen kommer att gå till. Jag kommer även att skicka ett dokument till dig med lite tips om hur du förbereder dig för tagningen.</p>
                 </div>
             </div>
             <div className="center-contents">

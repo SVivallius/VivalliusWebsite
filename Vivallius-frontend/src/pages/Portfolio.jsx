@@ -55,7 +55,7 @@ function Portfolio() {
     // This useEffect fetches the images to the gallery from the API.
     useEffect(() => {
         const fetchData = () => {
-            HttpRequest('public/photo', requestOptions)
+            HttpRequest('1/public/photo', requestOptions)
                 .then((response) => response.json)
                 .then((json) => {
                     let data = []
@@ -75,9 +75,8 @@ function Portfolio() {
                     console.log(imageArray)
                 })
                 .catch(error => {
-                    console.log(error)
+                    console.log('Unable to process return data from API. Please contact developer to resolve. // stefan.vivallius@outlook.com')
                     setImageArray(new Array)
-                    console.log(imageArray)
                 })
         }
         fetchData() 

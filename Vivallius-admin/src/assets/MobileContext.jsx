@@ -1,8 +1,8 @@
-import React, { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect } from "react"
 const MobileContext = createContext()
 
-export const MobileProvider = ({ children }) => {
-    const [isMobile, setIsMobile] = useState(false)
+export const MobileProvider = ({children}) => {
+    const [isMobile, setIsMobile]=useState(false)
 
     useEffect(() => {
         const handleResize = () => {
@@ -15,7 +15,7 @@ export const MobileProvider = ({ children }) => {
     }, [])
 
     return (
-        <MobileContext.Provider value={{ isMobile }}>
+        <MobileContext.Provider value={{isMobile}}>
             {children}
         </MobileContext.Provider>
     )
