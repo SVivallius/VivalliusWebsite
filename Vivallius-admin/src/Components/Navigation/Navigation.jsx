@@ -7,7 +7,12 @@ function Navigation() {
     const { isMobile } = useContext(MobileContext)
 
     return (
-        <>
-        </>
+        <div className={`nav-backplate ${isMobile?'':'desktop'}`}>
+            <ul>
+                
+            </ul>
+        </div>
     )
 }
+
+export default Navigation
