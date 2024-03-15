@@ -1,3 +1,5 @@
+using MySql.Data.MySqlClient;
+
 namespace VivalliusWebb_API;
 public class Program
 {
@@ -38,6 +40,10 @@ public class Program
 
 
         app.MapControllers();
+        app.Map("/healthcheck", async context =>
+        {
+            
+        });
 
         app.Run();
     }

@@ -11,11 +11,15 @@ import {
 import { MobileProvider } from './assets/MobileContext.jsx'
 import App from './App.jsx'
 import Landing from './Pages/Landing/Landing.jsx'
+import BookingControls from './Pages/BookingControls/BookingControls.jsx'
+import ImageControls from './Pages/ImageControls/ImageControls.jsx'
 
 const route = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App/>}>
+    <Route path="/admin/" element={<App/>}>
       <Route path="" element={<Landing/>}/>
+      <Route path="bookings" element={<BookingControls/>}/>
+      <Route path="photos" element={<ImageControls/>}/>
     </Route>
   )
 )

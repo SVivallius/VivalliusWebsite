@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.9'
 
 services:
   vivallius-frontend:
@@ -19,6 +19,15 @@ services:
     build:
       context: .
       dockerfile: VivalliusWebb-API/Dockerfile
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail http://localhost:80/healthcheck"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    depends_on:
+      vivalliusSql:
+        condition: service_healthy
     ports:
       - 4980:8080
     networks:
@@ -37,6 +46,12 @@ services:
       MYSQL_COLLATION: utf8mb4_swedish_ci
     volumes:
       - "vivalliusStorage:/var/lib/mysql"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 10s
     restart: always
     ports:
       - 4981:3306

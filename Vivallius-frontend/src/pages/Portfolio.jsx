@@ -75,7 +75,7 @@ function Portfolio() {
                     console.log(imageArray)
                 })
                 .catch(error => {
-                    console.log('Unable to process return data from API. Please contact developer to resolve. // stefan.vivallius@outlook.com')
+                    console.log(error)
                     setImageArray(new Array)
                 })
         }

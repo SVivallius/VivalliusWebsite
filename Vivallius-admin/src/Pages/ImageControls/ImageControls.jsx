@@ -17,7 +17,7 @@ function ImageControls() {
                     'content-type': 'application/json'
                 }
             }
-            HttpRequest('1/public/photos')
+            HttpRequest('1/public/photo')
                 .then((response) => response.json)
                 .then((json) => {
                     let data = []
@@ -45,3 +45,5 @@ function ImageControls() {
         </>
     )
 }
+
+export default ImageControls

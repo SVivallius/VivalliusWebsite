@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUri = 'http://vivalliuswebb-api:8080/api/' // NEEDS TO BE FULL URL.
+const baseUri = 'http://localhost:4980/api/' // NEEDS TO BE FULL URL.
 
 export async function HttpRequest(endpoint, requestOptions){
     try{

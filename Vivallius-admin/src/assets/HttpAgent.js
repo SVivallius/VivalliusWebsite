@@ -3,9 +3,10 @@ const baseUri = 'http://localhost:4980/api/'
 
 export async function HttpRequest(endpoint, requestOptions){
     try{
-        let response = await fetch(baseUri + endpoint, requestOptions)
-        return response
+        let promise = await fetch(baseUri + endpoint, requestOptions)
+        return promise
     } catch (event) {
+        console.log(event)
         return event
     }
 }

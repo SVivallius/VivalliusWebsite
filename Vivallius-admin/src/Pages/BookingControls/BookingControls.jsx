@@ -1,5 +1,5 @@
 import './BookingControls.css'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import MobileContext from '../../assets/MobileContext'
 import { HttpRequest } from '../../assets/HttpAgent'
 
@@ -19,10 +19,7 @@ function BookingControls() {
                 .then((response) => response.json)
                 .then((json) => {
                     let data = []
-                    json.map((item) => {
-                        data.push(item)
-                    })
-                    setBookingArray(data)
+                    console.log(json)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -34,7 +31,16 @@ function BookingControls() {
 
     return (
         <>
-        
+            {bookingArray.length > 0 && (
+                bookingArray.map((item) => {
+                    return (
+                        <>
+                        <p>{item.id}</p>
+                        <p>{item.Name}</p>
+                        </>
+                    )
+                })
+            )}
         </>
     )
 }
