@@ -1,35 +1,50 @@
-namespace VivalliusWebb_API
+using MySql.Data.MySqlClient;
+
+namespace VivalliusWebb_API;
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+
+        // Add services to the container.
+
+        builder.Services.AddControllers(opt =>
         {
-            var builder = WebApplication.CreateBuilder(args);
+            opt.AllowEmptyInputInBodyModelBinding = true;
+        });
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+        Statics.RegisterCustomServices(builder.Services);
+        Statics.ConfigureAutomapper(builder.Services);
 
-            // Add services to the container.
+        // Add Cors-policies
+        Statics.DisableCors(builder.Services);
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+        string connString = builder.Environment.IsDevelopment() ?
+            builder.Configuration.GetConnectionString("Development") : builder.Configuration.GetConnectionString("Production");
 
-            var app = builder.Build();
+        builder.Services.AddDbContext<VivalliusContext>(
+            opt => opt.UseMySql(connString, ServerVersion.AutoDetect(connString)));
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+        var app = builder.Build();
 
-            app.UseHttpsRedirection();
+        // Configure the HTTP request pipeline.
+        app.UseSwagger();
+        app.UseSwaggerUI();
 
-            app.UseAuthorization();
+        //app.UseHttpsRedirection();
+        //app.UseAuthorization();
+        app.UseCors("AllowAll");
 
 
-            app.MapControllers();
+        app.MapControllers();
+        app.Map("/healthcheck", async context =>
+        {
+            
+        });
 
-            app.Run();
-        }
+        app.Run();
     }
 }

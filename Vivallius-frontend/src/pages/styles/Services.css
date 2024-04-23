@@ -1,0 +1,7 @@
+.services-flex{
+    display: flex;
+    flex-direction: column;
+}
+.services-flex.desktop{
+    flex-direction: row;
+}

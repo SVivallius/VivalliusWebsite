@@ -1,0 +1,67 @@
+/* MAIN CONTAINER OF THE COMPONENT */
+.services-card-limiter{
+    width: 100%;
+    padding: 14px;
+}
+.services-card-limiter.desktop{
+    width: 50%;
+}
+
+/* SUB CONTAINER - START OF VISUALS */
+.services-card-container{
+    /* layout */
+    width: 100%;
+    height: 55vh;
+    display: block;
+    position: relative;
+
+    /* design */
+    border-radius: 20px;
+    overflow: hidden;
+    border: 10px solid rgba(100,100,100,0);
+}
+.services-card-container.desktop{
+    height: 70vh;
+}
+.services-card-container:hover{
+    /* On hover */
+    border-color: rgba(100,100,100,1);
+}
+
+/* IMAGE STYLE */
+.services-card-container img{
+    max-width: 100%;
+    margin-top: -15%;
+    position: absolute;
+}
+.services-card-container:hover img{
+    filter: blur(2px);
+}
+
+/* INFORMATION CONTAINER */
+.services-card-info{
+    /* layout */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    padding: 20px;
+
+    /* design */
+    background-color: rgba(0,0,0,0.5);
+}
+.services-card-info p{
+    color: white;
+}
+.services-card-info.desktop{
+    height: 80px;
+    background-color: rgba(0,0,0,0.7);
+}
+
+/* FUNCTIONAL CSS */
+
+/* Expand the information container to display
+the information on hover while on desktop */
+.services-card-container:hover .services-card-info.desktop{
+    height: 60%;
+}

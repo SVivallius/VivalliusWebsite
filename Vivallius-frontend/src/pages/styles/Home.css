@@ -1,0 +1,97 @@
+/*** WEBSITE LANDING PAGE LAYOUT ***/
+
+/*** MAIN CONTAINER STYLE ***/
+.intro-container{
+    overflow: hidden;
+    background-color: var(--content-background);
+}
+.intro-container.desktop{
+    display: flex;
+    flex-direction: row;
+}
+
+/*** LANDING PAGE IMG STYLE ***/
+
+.portfolio-overlay{
+    font-family: 'Dancing Script', cursive;
+    font-size: 96px;
+    position: absolute;
+    z-index: 50;
+    margin-top: 2%;
+    margin-left: 5%;
+    visibility: hidden;
+    color: white;
+}
+.portfolio-overlay.desktop{
+    visibility: visible;
+}
+
+.sample-img{
+    width: 100%;
+    position: relative;
+}
+
+.sample-img.desktop{
+    width: 100%;
+}
+
+.img-container{
+    display: flex;
+    flex-direction: column;
+    flex: 2.8;
+}
+
+.img-container:hover img{
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+}
+
+/*** SIDE PANEL STYLE ***/
+
+.aside{
+    background-color: #111;
+    padding: 40px;
+    padding-top: 20px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+.aside.desktop{
+    padding: 50px;
+    text-align: inherit;
+    width: 70%;
+    position: relative;
+}
+.link-list{
+    text-align: left;
+    line-height: 1.5;
+    width: 50%;
+    padding-left: 20px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.link-list li{
+    font-size: large;
+    padding: 5px 15px;
+    margin-left: 15px;
+}
+
+/*** BOOKINGS BUTTON STYLE ***/
+.home-bookings-btn{
+    border-radius: 0px;
+    height: 60px;
+    width: 150px;
+    border: 1px solid #555;
+    font-size: larger;
+    position: relative;
+    margin: 30px auto 0 auto;
+}
+.home-bookings-btn.desktop{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}

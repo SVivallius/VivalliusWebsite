@@ -1,0 +1,32 @@
+/* RingLoader.css */
+.ring-loader {
+    display: inline-block;
+    position: absolute;
+    width: 70px;
+    height: 70px;
+
+    /* POSITIONING RULES */
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .loader {
+    box-sizing: content-box;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    border-top: 7px solid;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

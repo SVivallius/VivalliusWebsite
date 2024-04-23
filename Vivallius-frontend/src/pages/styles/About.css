@@ -1,0 +1,73 @@
+/*** CONTAIN THE PAGE ***/
+.about-container{
+    width: 100%;
+}
+.about-container.desktop{
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+
+/*** THE TEXTY PART OF THE PAGE ***/
+.about-description{
+    width: 100%;
+    padding: 20px;
+}
+.about-description.desktop{
+    width: 50%;
+}
+.about-description p{
+    margin-bottom: 25px;
+}
+.about-description h2{
+    font-size: larger;
+    margin-bottom: 25px;
+}
+.about-description h3{
+    margin-bottom: 10px;
+}
+
+/*** HEY LOOK, IT ME ***/
+.about-selfportrait{
+    width: 100%;
+    text-align: center;
+}
+.about-selfportrait.desktop{
+    width: 50%;
+    padding: 60px 0;
+}
+.about-selfportrait img{
+    margin-top: -20%;
+    max-width: 100%;
+
+    filter: sepia(10%) saturate(100%) hue-rotate(-20deg);
+}
+.about-selfportrait.desktop img{
+    margin: 0;
+}
+
+/*** THE KONTAKT-BUTTON ***/
+#wrapper a{
+    margin: 0 auto;
+}
+.about-contact-btn{
+    /* positioning */
+    margin: 0 auto 70px auto;
+    position: relative;
+    display: block;
+
+    /* appearance */
+    width: 250px;
+    height: 50px;
+    border-radius: 0%;
+    border: 1px solid #555;
+}
+
+.styled-link-abt{
+    width: 100%;
+    display: block;
+    padding: 15px;
+}
+.styled-link-abt:hover{
+    color: white !important;
+}

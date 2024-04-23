@@ -1,0 +1,27 @@
+.image-container{
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+}
+.image-container.desktop{
+    padding: 30px;
+}
+.image-container p{
+    padding: 30px;
+
+}
+.image-holder{
+    box-sizing: border-box;
+    margin: 0 auto;
+    background-color: transparent;
+    cursor: pointer;
+}
+.image-holder:hover{
+    background-color: #333;
+}
+
+.portfolio-clm{
+    width: 50%;
+    height: auto;
+}

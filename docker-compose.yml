@@ -1,0 +1,68 @@
+version: '3.9'
+
+services:
+  vivallius-frontend:
+    image: ${DOCKER_REGISTRY-}vivallius-frontend
+    build:
+      context: ./Vivallius-frontend
+      dockerfile: ./Dockerfile
+    ports:
+      - 4982:8080
+    networks:
+      - internal
+      # Add external networking pointing to NGINX here
+    volumes:
+      - "vivalliusMedia:/app/src/media"
+    
+  vivalliuswebb-api:
+    image: ${DOCKER_REGISTRY-}vivalliuswebbapi
+    build:
+      context: .
+      dockerfile: VivalliusWebb-API/Dockerfile
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail http://localhost:80/healthcheck"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    depends_on:
+      vivalliusSql:
+        condition: service_healthy
+    ports:
+      - 4980:8080
+    networks:
+      - internal
+    volumes:
+      - "vivalliusMedia:/assets/img"
+
+  vivalliusSql:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: vivallius
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: sksa
+      MYSQL_ROOT_PASSWORD: sksa1955-12-05
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_COLLATION: utf8mb4_swedish_ci
+    volumes:
+      - "vivalliusStorage:/var/lib/mysql"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 10s
+    restart: always
+    ports:
+      - 4981:3306
+    networks:
+      - internal
+
+volumes:
+  vivalliusStorage:
+  vivalliusMedia:
+
+networks:
+  internal:
+
+  # Add External Network to NGINX here

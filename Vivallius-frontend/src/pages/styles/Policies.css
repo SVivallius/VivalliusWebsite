@@ -1,0 +1,32 @@
+.content-container{
+    text-align: center;
+    padding: 40px;
+    display: block;
+    width: 100%;
+}
+.content-container.desktop{
+    width: 70%;
+    text-align: inherit;
+    margin: 0 auto;
+}
+
+.content-container p {
+    margin-bottom: 20px;
+    line-height: 1.7;
+    font-size: 18px;
+}
+.content-container p a{
+    color: #99d;
+    font-weight: 700;
+}
+
+.content-container h2{
+    margin-bottom: 14px;
+    margin-top: 45px;
+}
+.content-container.desktop h2{
+    margin: 30px auto 12px 20px !important;
+}
+.content-container.desktop h1{
+    margin-left: 20px;
+}

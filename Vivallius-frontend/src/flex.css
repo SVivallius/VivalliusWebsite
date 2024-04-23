@@ -1,0 +1,11 @@
+.flex-dir-h{
+    flex-direction: row;
+}
+
+.flex-dir-v{
+    flex-direction: column;
+}
+
+.flex-container{
+    display: flex;
+}
