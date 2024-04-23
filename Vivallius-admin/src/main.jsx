@@ -13,6 +13,7 @@ import App from './App.jsx'
 import Landing from './Pages/Landing/Landing.jsx'
 import BookingControls from './Pages/BookingControls/BookingControls.jsx'
 import ImageControls from './Pages/ImageControls/ImageControls.jsx'
+import SettingsControls from './Pages/SettingsControls/SettingsControls'
 
 const route = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const route = createBrowserRouter(
       <Route path="" element={<Landing/>}/>
       <Route path="bookings" element={<BookingControls/>}/>
       <Route path="photos" element={<ImageControls/>}/>
+      <Route path="settings" element={<SettingsControls/>}/>
     </Route>
   )
 )

@@ -9,7 +9,10 @@ function Navigation() {
     return (
         <div className={`nav-backplate ${isMobile?'':'desktop'}`}>
             <ul>
-                
+                <li><Link to="/admin/">Hem</Link></li>
+                <li><Link to="/admin/bookings">Bokningar</Link></li>
+                <li><Link to="/admin/photos">Portfolio</Link></li>
+                <li><Link to="/admin/settings">Inställningar</Link></li>
             </ul>
         </div>
     )

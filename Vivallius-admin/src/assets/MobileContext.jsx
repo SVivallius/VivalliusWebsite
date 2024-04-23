@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react"
 const MobileContext = createContext()
 
 export const MobileProvider = ({children}) => {
-    const [isMobile, setIsMobile]=useState(false)
+    const [isMobile, setIsMobile]=useState(true)
 
     useEffect(() => {
         const handleResize = () => {

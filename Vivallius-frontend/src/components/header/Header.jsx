@@ -14,6 +14,10 @@ function Header() {
         setExpanded(!expanded)
     }
 
+    function collapseMenu() {
+        setExpanded(false)
+    }
+
     return (
         <>
             <div className={`nav-backplate ${isMobile ? '' : 'desktop'}`}>
@@ -22,25 +26,25 @@ function Header() {
                     isMobile ?
                         (expanded ? 'expanded' : 'collapsed') :
                         'desktop'}`}>
-                    <li className="nav-opt">
+                    <li className="nav-opt" onClick={collapseMenu}>
                         <Link to="/"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Hem</p></Link>
                     </li>
-                    <li className="nav-opt">
+                    <li className="nav-opt" onClick={collapseMenu}>
                         <Link to="/portfolio"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Portfolio</p></Link>
                     </li>
-                    <li className="nav-opt">
+                    <li className="nav-opt" onClick={collapseMenu}>
                         <Link to="services"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Tjänster</p></Link>
                     </li>
-                    <li className="nav-opt">
+                    <li className="nav-opt" onClick={collapseMenu}>
                         <Link to="/about"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Om mig</p></Link>
                     </li>
-                    <li className="nav-opt">
+                    <li className="nav-opt" onClick={collapseMenu}>
                         <Link to="/booking"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Bokning</p></Link>
                     </li>
-                    <li className="nav-opt">
+                    <li className="nav-opt" onClick={collapseMenu}>
                         <Link to="/policies"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Sekretess</p></Link>
                     </li>
-                    <li className="nav-opt">
+                    <li className="nav-opt" onClick={collapseMenu}>
                         <Link to="/nature"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Natur</p></Link>
                     </li>
                 </ul>
