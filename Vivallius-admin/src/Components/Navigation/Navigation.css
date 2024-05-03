@@ -1,11 +1,78 @@
 .nav-backplate{
+    background-color: var(--nav-background);
     width: 100%;
     position: sticky;
-    height: 80px;
     top: 0px;
-
-    background-color: #fafafa;
+    z-index: 5000;
+    line-height: 1.5;
+    display: block;
 }
-.nav-backplate.desktop{
 
+.nav-backplate.desktop{
+    display: flex;
+    flex-direction: row;
+}
+
+#nav-home{
+    margin-left: 0%;
+    margin-right: auto;
+    width: 10%;
+    width: 100%;
+    flex-direction: row;
+}
+#nav-home.desktop{
+    width: auto !important;
+    margin-left: 30px;
+    display: flex;
+}
+
+.nav-options{
+    list-style-type: none;
+    width: 100%;
+    overflow: hidden scroll;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+}
+.nav-options.desktop{
+    flex-direction: row;
+    display: flex;
+    overflow: visible;
+    width: auto;
+    margin-left: auto;
+    margin-right: 0px;
+}
+.nav-options.expanded{
+    height: 50vh !important;
+}
+.nav-options.collapsed{
+    height: 0 !important;
+}
+.nav-link{
+    width: 100%;
+    padding: 16px;
+    background-color: transparent;
+    text-align: center;
+    font-size: larger;
+    border-top: 1px solid #333;
+}
+.nav-link:hover{
+    background-color: var(--nav-background-hover);
+}
+.nav-link.desktop{
+    width: 150px;
+    border: none;
+}
+
+.menu-toggle-holder{
+    width: 100%;
+    background-color: transparent;
+    text-align: center;
+    border-top: 1px solid #333;
+}
+
+.menu-toggle-button{
+    display:inline-block;
+    width: auto;
+    margin: 10px auto 0px auto;
 }
