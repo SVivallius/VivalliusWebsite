@@ -7,7 +7,7 @@ import MobileContext from '../assets/MobileContext'
 import RingLoader from '../components/RingLoader/RingLoader.jsx'
 import Fullview from '../components/Fullview/Fullview.jsx'
 
-import { MockPhotos } from '../assets/mockItems.jsx'
+import { MockPhotos } from '../assets/mockItems/mockItems.jsx'
 
 function Portfolio() {
     const { isMobile } = useContext(MobileContext)

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import MobileContext from '../../assets/MobileContext.jsx'
 
-import './Navigation.css'
+import './AdminHeader.css'
 import MenuBurger from '../menu-burger/Menu-burger.jsx'
 import HomeIcon from '../home-icon/HomeIcon.jsx'
 
@@ -27,16 +27,19 @@ function Header() {
                         (expanded ? 'expanded' : 'collapsed') :
                         'desktop'}`}>
                     <li className="nav-opt" onClick={collapseMenu}>
-                        <Link to="/admin/"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Hem</p></Link>
+                        <Link to="/"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Hem</p></Link>
                     </li>
                     <li className="nav-opt" onClick={collapseMenu}>
-                        <Link to="/admin/bookings/"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Bokningar</p></Link>
+                        <Link to="/admin/portfolio"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Portfolio</p></Link>
                     </li>
                     <li className="nav-opt" onClick={collapseMenu}>
-                        <Link to="/admin/photos"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Portfolio</p></Link>
+                        <Link to="/admin/booking"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Bokningar</p></Link>
                     </li>
                     <li className="nav-opt" onClick={collapseMenu}>
                         <Link to="/admin/settings"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Inställningar</p></Link>
+                    </li>
+                    <li className="nav-opt" onClick={collapseMenu}>
+                        <Link to="/admin/logout"><p className={`nav-link ${isMobile ? '' : 'desktop'}`}>Logga Ut</p></Link>
                     </li>
                 </ul>
                 {isMobile && (
