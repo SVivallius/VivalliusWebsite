@@ -1,10 +1,10 @@
 import React, { createContext, useState, useEffect } from 'react'
 import { HttpRequest } from './HttpAgent'
-const AdminContext = CreateContext()
+const AdminContext = createContext()
 
 export const AdminProvider = ({ children }) => {
     const [context, setContext] = useState({
-        isAdmin: false,
+        isAdmin: true,
         token: "",
         tokenCreateTime: null
     })
@@ -24,7 +24,7 @@ export const AdminProvider = ({ children }) => {
                 } else return false
             })
             .catch((error) => {
-                console.log(error)
+                return false
             })
     }
 

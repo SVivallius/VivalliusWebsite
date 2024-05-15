@@ -30,7 +30,10 @@ import AdminLogin from './admin-pages/AdminLogin.jsx'
 import AdminLogout from './admin-pages/AdminLogout.jsx'
 import AdminApp from './AdminApp.jsx'
 import AdminHome from './admin-pages/AdminHome.jsx'
-import AdminPortfolio from './admin-pages/AdminPortfolio'
+import AdminPortfolio from './admin-pages/AdminPortfolio.jsx'
+import AdminBookings from './admin-pages/AdminBookings.jsx'
+import AdminSettings from './admin-pages/AdminSettings.jsx'
+import { AdminProvider } from './assets/AdminContext'
 
 const route = createBrowserRouter(
   createRoutesFromElements(
@@ -56,6 +59,8 @@ const route = createBrowserRouter(
       <Route path="admin/" element={<AdminApp />}>
         <Route path="" exact element={<AdminHome />}/>
         <Route path="portfolio/" element={<AdminPortfolio />}/>
+        <Route path="bookings/" element={<AdminBookings />}/>
+        <Route path="settings/" element={<AdminSettings />}/>
       </Route>
     </Route>
   )
@@ -64,7 +69,9 @@ const route = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <MobileProvider>
-      <RouterProvider router={route} />
+      <AdminProvider>
+        <RouterProvider router={route} />
+      </AdminProvider>
     </MobileProvider>
   </React.StrictMode>,
 )

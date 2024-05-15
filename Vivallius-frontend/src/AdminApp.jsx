@@ -6,12 +6,14 @@ import { useContext } from 'react'
 
 function AdminApp() {
     const {isMobile} = useContext(MobileContext)
-    const {admnArgs} = useContext(AdminContext)
+    const {adminArgs} = useContext(AdminContext)
+
+    console.log(adminArgs)
 
     return (
         <>
-            {admnArgs.context.isAdmin == false ? (
-                <Navigate to="admin/login"/>
+            {adminArgs.context.isAdmin == false ? (
+                <Navigate to="/admin/login"/>
             ) : (
                 <>
                     <AdminHeader />
