@@ -1,31 +1,53 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using VivalliusWebb_Server;
-using VivalliusWebb_Services.Interfaces;
+using VivalliusWebb_Server.Entities;
+
 namespace VivalliusWebb_Services.Services;
-public class Bouncer : IBouncer
+
+public class Bouncer
 {
-    private HMACSHA256 hmac;
+    private readonly SessionService _sessions;
     private readonly VivalliusContext _db;
-    public Bouncer(VivalliusContext db)
+    public Bouncer(SessionService sessions, VivalliusContext db)
     {
-        hmac = new HMACSHA256();
+        _sessions = sessions;
         _db = db;
     }
-    public async Task<bool> Bounce(string payloadAsJson, string signature)
+
+    public async Task<bool> AuthenticateAsync(string username, string password)
     {
-        var key = await _db.Keys
-            .Select(k => k.Secret)
+        var creds = await _db.Credentials
+            .Where(c => c.Username.Equals(username))
             .FirstOrDefaultAsync();
-        byte[] keyAsBytes = Encoding.UTF8.GetBytes(key);
-        hmac.Key = keyAsBytes;
-        return signature.Equals(Validate(payloadAsJson));
+
+        if (creds == null) return false;
+        string provided = HashPass(password, creds.salt);
+        if (provided.Equals(creds.PasswordHash))
+            return true;
+        return false;
     }
-    private string Validate(string payloadAsJson)
+
+    private string HashPass(string password, byte[] salt)
     {
-        byte[] payloadAsByteArray = Encoding.UTF8.GetBytes(payloadAsJson);
-        var digest = hmac.ComputeHash(payloadAsByteArray);
-        return Convert.ToBase64String(digest);
+        var PassBytes = Encoding.UTF8.GetBytes(password);
+        var combined = PassBytes.Concat(salt).ToArray();
+
+        using var hmac = new HMACSHA256();
+        var digest = hmac.ComputeHash(combined);
+
+        return Encoding.UTF8.GetString(digest);
+    }
+
+    public Credentials SaltedEarth(Credentials source)
+    {
+        source.salt = AddSalt();
+        return source;
+    }
+    // YOU ARE HERE
+    private byte[] AddSalt()
+    {
+
     }
 }

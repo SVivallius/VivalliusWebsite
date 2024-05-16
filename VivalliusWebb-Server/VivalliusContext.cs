@@ -7,8 +7,8 @@ public class VivalliusContext : DbContext
     // Tables
     public DbSet<Photo> Photos => Set<Photo>();
     public DbSet<ModelPerson> ModelPersons => Set<ModelPerson>();
-    public DbSet<Key> Keys => Set<Key>();
     public DbSet<Booking> Bookings => Set<Booking>();
+    public DbSet<Credentials> Credentials => Set<Credentials>();
     // ctor
     public VivalliusContext(DbContextOptions<VivalliusContext> options) : base(options) { }
     protected override void OnModelCreating(ModelBuilder builder)
@@ -20,7 +20,7 @@ public class VivalliusContext : DbContext
             .HasKey(p => p.Id);
         builder.Entity<ModelPerson>()
             .HasKey(p => p.Id);
-        builder.Entity<Key>()
+        builder.Entity<Credentials>()
             .HasKey(p => p.Id);
         builder.Entity<Booking>()
             .HasKey(p => p.Id);
