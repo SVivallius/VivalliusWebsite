@@ -6,31 +6,23 @@ using VivalliusWebb_Services.Services.Objects;
 namespace VivalliusWebb_Services.Services;
 public class SessionService : IHostedService
 {
-    private List<Session> _sessions = new List<Session>();
-
+    private List<Session> _sessions;
     public SessionService()
     {
+        _sessions = new List<Session>();
     }
-
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        Task.Run(async () =>
-        {
-            while (true)
-            {
-                if (cancellationToken.IsCancellationRequested)
-                    break;
-                foreach (var session in _sessions)
-                {
-                    if (!CheckValidity(session))
-                        _sessions.Remove(session);
-                }
-                await Task.Delay(TimeSpan.FromMinutes(1));
-            }
-        });
         return Task.CompletedTask;
     }
-
+    public Task StopAsync(CancellationToken cancellationToken)
+    {
+        foreach (var session in _sessions)
+        {
+            _sessions.Remove(session);
+        }
+        return Task.CompletedTask;
+    }
     private bool CheckValidity(Session session)
     {
         if (session.LastUsed.AddHours(24) > DateTime.Now)
@@ -44,20 +36,16 @@ public class SessionService : IHostedService
 
         return false;
     }
-
-    public Task StopAsync(CancellationToken cancellationToken)
-    {
-        foreach (var session in _sessions)
-        {
-            _sessions.Remove(session);
-        }
-        return Task.CompletedTask;
-    }
     public Session? GetSessionFromToken(string token)
     {
-        return _sessions
+        var session = _sessions
             .Where(s => s.Token.Equals(token))
             .FirstOrDefault();
+        if (session == null)
+            return null;
+        if (!CheckValidity(session))
+            return null;
+        return session;
     }
     public Session CreateSession(Credentials login, bool isLong)
     {
@@ -72,7 +60,6 @@ public class SessionService : IHostedService
         _sessions.Add(session);
         return session;
     }
-
     private string CreateToken(string username)
     {
         string token = string.Empty;
@@ -88,7 +75,6 @@ public class SessionService : IHostedService
         }
         return token;
     }
-
     public bool RemoveSession(string token)
     {
         var session = _sessions
@@ -102,5 +88,4 @@ public class SessionService : IHostedService
         }
         else return false;
     }
-
 }

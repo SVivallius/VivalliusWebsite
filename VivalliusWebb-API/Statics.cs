@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using VivalliusWebb_Common.DTO_s;
-using VivalliusWebb_Common.Models;
+﻿using VivalliusWebb_Common.Models;
 using VivalliusWebb_Server.Entities;
 using VivalliusWebb_Services.Interfaces;
 using VivalliusWebb_Services.Services;
@@ -48,6 +46,7 @@ public static class Statics
 
     public static void RegisterCustomServices(IServiceCollection services)
     {
+        //services.AddHostedService<SessionService>();
         services.AddScoped<IBouncer, Bouncer>();
     }
 

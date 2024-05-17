@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VivalliusWebb_Server;
 
@@ -10,9 +11,11 @@ using VivalliusWebb_Server;
 namespace VivalliusWebb_Server.Migrations
 {
     [DbContext(typeof(VivalliusContext))]
-    partial class VivalliusContextModelSnapshot : ModelSnapshot
+    [Migration("20240517163957_VersionUpdate2024-05-17")]
+    partial class VersionUpdate20240517
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

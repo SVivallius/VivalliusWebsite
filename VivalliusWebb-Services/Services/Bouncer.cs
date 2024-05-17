@@ -10,12 +10,12 @@ public class Bouncer : IBouncer
 {
     private readonly SessionService _sessions;
     private readonly VivalliusContext _db;
+    
     public Bouncer(SessionService sessions, VivalliusContext db)
     {
         _sessions = sessions;
         _db = db;
     }
-
     public async Task<bool> AuthenticateAsync(string username, string password)
     {
         var creds = await _db.Credentials

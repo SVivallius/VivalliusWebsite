@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+using VivalliusWebb_Services.Services;
 
 namespace VivalliusWebb_API;
 public class Program
@@ -8,21 +8,22 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-
+        builder.Services.AddSingleton<SessionService>();
         builder.Services.AddControllers(opt =>
         {
             opt.AllowEmptyInputInBodyModelBinding = true;
         });
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         Statics.RegisterCustomServices(builder.Services);
         Statics.ConfigureAutomapper(builder.Services);
 
         // Add Cors-policies
+        // TO-DO: Create actual Cors-rules
         Statics.DisableCors(builder.Services);
 
-        string connString = builder.Configuration.GetConnectionString("Connection");
+        string? connString = builder.Configuration.GetConnectionString("Connection");
 
         builder.Services.AddDbContext<VivalliusContext>(
             opt => opt.UseMySql(connString, ServerVersion.AutoDetect(connString)));

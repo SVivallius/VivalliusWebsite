@@ -2,13 +2,13 @@
   "profiles": {
     "VivalliusWebb_API": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:4980;http://localhost:4981"
+      "applicationUrl": "https://localhost:4982;http://localhost:4983"
     },
     "IIS Express": {
       "commandName": "IISExpress",
