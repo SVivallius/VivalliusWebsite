@@ -12,7 +12,7 @@ function AdminApp() {
 
     return (
         <>
-            {adminArgs.context.isAdmin == false ? (
+            {adminArgs.context.isLoggedIn == false ? (
                 <Navigate to="/admin/login"/>
             ) : (
                 <>

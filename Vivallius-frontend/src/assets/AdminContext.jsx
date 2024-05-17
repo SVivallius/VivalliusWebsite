@@ -4,7 +4,7 @@ const AdminContext = createContext()
 
 export const AdminProvider = ({ children }) => {
     const [context, setContext] = useState({
-        isAdmin: true,
+        isLoggedIn: true,
         token: "",
         tokenCreateTime: null
     })
@@ -49,7 +49,7 @@ export const AdminProvider = ({ children }) => {
             })
             .then((json) => {
                 setContext({
-                    isAdmin: json.isAdmin,
+                    isLoggedIn: json.isAdmin,
                     token: json.token,
                     tokenCreateTime: json.tokenCreateDate
                 })
@@ -76,7 +76,7 @@ export const AdminProvider = ({ children }) => {
             })
             .then((json) => {
                 setContext({
-                    isAdmin: false,
+                    isLoggedIn: false,
                     token: "",
                     tokenCreateTime: null
                 })

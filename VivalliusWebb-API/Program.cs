@@ -22,8 +22,7 @@ public class Program
         // Add Cors-policies
         Statics.DisableCors(builder.Services);
 
-        string connString = builder.Environment.IsDevelopment() ?
-            builder.Configuration.GetConnectionString("Development") : builder.Configuration.GetConnectionString("Production");
+        string connString = builder.Configuration.GetConnectionString("Connection");
 
         builder.Services.AddDbContext<VivalliusContext>(
             opt => opt.UseMySql(connString, ServerVersion.AutoDetect(connString)));
@@ -31,20 +30,13 @@ public class Program
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
-        app.UseSwagger();
-        app.UseSwaggerUI();
+        //app.UseSwagger();
+        //app.UseSwaggerUI();
 
         //app.UseHttpsRedirection();
         //app.UseAuthorization();
         app.UseCors("AllowAll");
-
-
         app.MapControllers();
-        app.Map("/healthcheck", async context =>
-        {
-            
-        });
-
         app.Run();
     }
 }

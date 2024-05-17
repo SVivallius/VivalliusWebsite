@@ -14,7 +14,7 @@ public class SessionService : IHostedService
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        Task.Run(() =>
+        Task.Run(async () =>
         {
             while (true)
             {
@@ -25,6 +25,7 @@ public class SessionService : IHostedService
                     if (!CheckValidity(session))
                         _sessions.Remove(session);
                 }
+                await Task.Delay(TimeSpan.FromMinutes(1));
             }
         });
         return Task.CompletedTask;
@@ -52,14 +53,12 @@ public class SessionService : IHostedService
         }
         return Task.CompletedTask;
     }
-    public bool IsSession(string token)
+    public Session? GetSessionFromToken(string token)
     {
-        var session = _sessions
+        return _sessions
             .Where(s => s.Token.Equals(token))
             .FirstOrDefault();
-        return session != null;
     }
-
     public Session CreateSession(Credentials login, bool isLong)
     {
         var session = new Session
