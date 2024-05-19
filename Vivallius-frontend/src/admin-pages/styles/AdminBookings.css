@@ -1,0 +1,17 @@
+.admin-booking-container{
+    width: 100%;
+    padding: 30px;
+}
+.admin-booking-container.desktop{
+
+}
+
+.admin-bookings-holder{
+    width: 100%;
+    min-height: 200px;
+    display: block;
+    position: relative;
+
+    background-color: var(--body-background);
+    border-radius: 7px;
+}
