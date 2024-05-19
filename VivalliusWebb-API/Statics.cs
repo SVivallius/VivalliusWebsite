@@ -46,7 +46,9 @@ public static class Statics
 
     public static void RegisterCustomServices(IServiceCollection services)
     {
-        //services.AddHostedService<SessionService>();
+        services.AddSingleton<SessionService>();
+        services.AddHostedService(
+            provider => provider.GetRequiredService<SessionService>());
         services.AddScoped<IBouncer, Bouncer>();
     }
 

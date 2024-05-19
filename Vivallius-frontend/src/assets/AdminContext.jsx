@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState } from 'react'
 import { HttpRequest } from './HttpAgent'
 const AdminContext = createContext()
 
@@ -53,6 +53,7 @@ export const AdminProvider = ({ children }) => {
                     token: json.token,
                     tokenCreateTime: json.tokenCreateDate
                 })
+                return true
             })
             .catch((error) => {
                 console.log(error)

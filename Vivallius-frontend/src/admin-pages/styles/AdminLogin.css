@@ -1,0 +1,82 @@
+.login-container{
+    border: 5px solid #666;
+    border-radius: 15px;
+    width: 90vw;
+    max-width: 450px;
+    height: 80vh;
+    max-height: 550px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    left: 50%;
+    top: 50%;
+
+    transform: translateX(-50%) translateY(-50%);
+
+    background-color: var(--content-background);
+    text-align: center;
+    padding: 20px;
+}
+.login-container.desktop{
+    
+}
+
+.login-form {
+    width: 90%;
+    padding: 20px;
+    margin: 20px auto;
+}
+.login-form input{
+    display: block;
+    font-size: large;
+    padding: 7px;
+    border-radius: 5px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+.login-text-field {
+    width: 100%;
+    margin-bottom: 15px;
+    
+}
+
+.login-submit-btn{
+    width: 50%;
+    height: 70px;
+    margin-top: 60px !important;
+
+    background-color: #40404c;
+    font-size: x-large !important;
+}
+.login-submit-btn:hover{
+    background-color: #70707c;
+}
+
+/* LÄNKAR LÄNGST NER */
+
+.login-links{
+    display: flex;
+    flex-direction: column;
+}
+.login-links.desktop{
+    flex-direction: row;
+}
+
+.login-links li{
+    list-style: none;
+    margin: 0 auto;
+    width: 50%;
+    border-right: 3px solid #444;
+    padding: 7px 0;
+}
+.login-links li:last-child{
+    border: none;
+}
+.login-links a {
+    margin: 0px auto;
+    width: auto;
+    vertical-align: middle;
+}
