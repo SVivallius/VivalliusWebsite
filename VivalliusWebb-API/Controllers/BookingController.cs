@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 using VivalliusWebb_Common.Models;
 using VivalliusWebb_Server.Entities;
 using VivalliusWebb_Services.Interfaces;
@@ -30,7 +31,6 @@ public class BookingController : ControllerBase
 
             if (await _db.SaveChangesAsync() > 0)
             {
-
                 var node = typeof(Booking).Name.ToLower();
                 return Results.NoContent();
             }

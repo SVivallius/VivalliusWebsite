@@ -2,6 +2,7 @@ import './styles/AdminBookings.css'
 import { useContext, useEffect, useState } from 'react'
 import RingLoader from '../components/RingLoader/RingLoader'
 import { HttpRequest } from '../assets/HttpAgent'
+import Booking from './components/Booking/Booking.jsx'
 
 import MobileContext from '../assets/MobileContext'
 import AdminContext from '../assets/AdminContext'
@@ -15,7 +16,7 @@ function AdminBookings () {
 
     useEffect(() => {
         let getBookings = () => {
-            HttpRequest('/admin/booking', {
+            HttpRequest('1/admin/booking', {
                 method: 'GET',
                 headers: {
                     'content-type':'application/json',
@@ -23,14 +24,22 @@ function AdminBookings () {
                 }
             })
             .then(response => {
-                setIsLoading(false)
-                if (response.status >= 200 && response.status < 300){
-                    return response.json
+                if (response.ok == true){
+                    return response.json()
                 } else {
-                    return JSON.stringify(new Array)
+                    return new Array
                 }
             })
-            
+            .then((json) => {
+                let t = []
+                json.map((item) => {
+                    t.push(item)
+                })
+                setBookingsArray(t)
+            })
+            .then(
+                setIsLoading(false)
+            )
         }
         getBookings()
     },[])
@@ -45,8 +54,9 @@ function AdminBookings () {
                     ):(
                         bookingsArray.map((item) => {
                             return (
-                                <>
-                                </>
+                                <div className="booking-container" key={item.id}>
+                                    <Booking args={item}/>
+                                </div>
                             )
                         })
                     )}

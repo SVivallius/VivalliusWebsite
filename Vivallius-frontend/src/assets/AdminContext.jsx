@@ -16,7 +16,7 @@ export const AdminProvider = ({ children }) => {
                 'content-type': 'application/json'
             }
         }
-        HttpRequest('admin/login/isinit', rqstOpt)
+        HttpRequest('1/admin/login/isinit', rqstOpt)
             .then((response) => response.json())
             .then((json) => {
                 if (json.isinit == true){
