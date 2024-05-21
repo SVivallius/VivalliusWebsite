@@ -5,7 +5,8 @@ import MobileContext from '../../../assets/MobileContext.jsx'
 function Booking({ args }){
     const { isMobile } = useContext(MobileContext)
     return (
-        <div className={`booking-container ${isMobile ? '':'desktop'}`}>
+        /*<div className={`booking-container ${isMobile ? '':'desktop'}`}>*/
+        <>
             <div className={`booking-segment`}>
                 <p>Namn:<br /><span className='bold'>{args.name}</span></p>
             </div>
@@ -19,7 +20,8 @@ function Booking({ args }){
                     <>Pågående</>
                 )}</span></p>
             </div>
-        </div>
+        </>
+        /*</div>*/
     )
 }
 

@@ -11,6 +11,9 @@
     flex-direction: row;
     width: 100%;
 }
+.booking-container:hover{
+    background-color: var(--button-col-hover);
+}
 .booking-container p{
     margin-top: 5px;
     padding: 0;
