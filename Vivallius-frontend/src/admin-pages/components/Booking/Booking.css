@@ -1,0 +1,35 @@
+.booking-container{
+    position: relative;
+    width: 100%;
+    
+    padding: 1px 10px;
+    margin-bottom: 7px;
+    background-color: var(--content-background);
+    border-radius: 7px;
+
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.booking-container:hover{
+    background-color: var(--button-col-hover);
+}
+.booking-container p{
+    margin-top: 5px;
+    padding: 0;
+}
+
+.booking-segment{
+    margin: 0 auto;
+    width: 100%;
+}
+.booking-segment:first-child{
+    margin-left: 0;
+}
+.booking-segment:last-child{
+    margin-right: 0;
+}
+
+.bold{
+    font-weight: bold;
+}

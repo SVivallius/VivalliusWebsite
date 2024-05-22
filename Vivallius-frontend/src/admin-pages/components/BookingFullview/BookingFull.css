@@ -1,0 +1,44 @@
+.booking-full-background{
+    display: none;
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+
+    width: 100vw;
+    height: 100vh;
+    z-index: 5000;
+
+    top: 0px;
+    left: 0px;
+}
+.booking-full-background.visible{
+    display: block !important;
+}
+
+.full-book-container{
+    display: inherit;
+
+    position: fixed;
+    width: 400px;
+    min-height: 450px;
+    padding: 20px;
+
+    background-color: var(--body-background);
+    border: 5px solid gray;
+    border-radius: 20px;
+
+    top:50%;
+    left:50%;
+    transform:
+        translateX(-50%)
+        translateY(-50%);
+}
+
+.booking-full-section{
+    margin: 15px 0;
+}
+.booking-full-section:first-child{
+    margin-top: 0;
+}
+.booking-full-section:last-child{
+    margin-bottom: 0;
+}
