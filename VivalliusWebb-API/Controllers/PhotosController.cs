@@ -11,11 +11,13 @@ public class PhotosController : ControllerBase
     private readonly VivalliusContext _db;
     private readonly IMapper _mapper;
     private readonly IBouncer _bouncer;
-    public PhotosController(VivalliusContext db, IMapper mapper, IBouncer bouncer)
+    private readonly FileStorageManager fs;
+    public PhotosController(VivalliusContext db, IMapper mapper, IBouncer bouncer, FileStorageManager fs)
     {
         _db = db;
         _mapper = mapper;
         _bouncer = bouncer;
+        this.fs = fs;
     }
 
     [Route("public/[controller]")]
@@ -50,14 +52,14 @@ public class PhotosController : ControllerBase
     {
         // TODO: Add security
         string filePath = String.Empty;
-        using (FileStorageManager fs = new(photo.Image))
-            try
+        fs.Initialize(photo.Image);
+        try
         {
             // Add FileSave struct
             filePath = await fs.SaveImageAsync();
             // Add SQL add struct
             var entity = _mapper.Map<Photo>(photo);
-            entity.PhotoPath = photo.Image.Name;
+            entity.PhotoPath = $"src/media/{photo.Image.FileName}";
             if (photo.ModelPersonIds != null && photo.ModelPersonIds.Count > 0)
             {
                 List<ModelPerson> tempStorage = await _db.ModelPersons

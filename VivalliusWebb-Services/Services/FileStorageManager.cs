@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace VivalliusWebb_Services.Services;
 public class FileStorageManager : IDisposable
@@ -6,8 +7,17 @@ public class FileStorageManager : IDisposable
     private string basePath = $"./assets";
     private IFormFile _file;
     private bool disposedValue;
-    public FileStorageManager(IFormFile file)
-        => _file = file;
+
+    private readonly ILogger<FileStorageManager> _logs;
+    public FileStorageManager(ILogger<FileStorageManager> logs)
+    {
+        _logs = logs;
+    }
+
+    public void Initialize(IFormFile file)
+    {
+        _file = file;
+    }
 
     public async Task<string> SaveImageAsync()
     {
@@ -18,12 +28,17 @@ public class FileStorageManager : IDisposable
         {
             try
             {
+                if (!Directory.Exists($"{basePath}/img/"))
+                {
+                    Directory.CreateDirectory($"{basePath}/img/");
+                }
                 filePath = (iteration == 0) ?
                     $"{basePath}/img/{_file.FileName}" : $"{basePath}/img/{_file.FileName}_{iteration}";
                 isSuccessfullySaved = await TryPerformSaveAsync(filePath);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logs.LogCritical(ex.Message);
                 iteration++;
             }
         }

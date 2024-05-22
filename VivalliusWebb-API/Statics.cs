@@ -50,6 +50,8 @@ public static class Statics
         services.AddHostedService(
             provider => provider.GetRequiredService<SessionService>());
         services.AddScoped<IBouncer, Bouncer>();
+        services.AddScoped<FileStorageManager>();
+        services.AddLogging();
     }
 
     public static void ConfigureCors(IServiceCollection services)
