@@ -12,7 +12,7 @@ services:
       - internal
       # Add external networking pointing to NGINX here
     volumes:
-      - "vivalliusMedia:/app/src/media"
+      - vivalliusMedia:/app/src/assets/media:ro
     
   vivalliuswebb-api:
     image: ${DOCKER_REGISTRY-}vivalliuswebbapi
@@ -33,7 +33,7 @@ services:
     networks:
       - internal
     volumes:
-      - "vivalliusMedia:/assets/img"
+      - vivalliusMedia:/app/assets/img
 
   vivalliusSql:
     image: mysql:latest

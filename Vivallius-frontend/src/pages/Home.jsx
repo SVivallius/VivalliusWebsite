@@ -1,5 +1,5 @@
 import './styles/Home.css'
-import Laire from '../media/static/startbild.jpg'
+import Laire from '../assets/media/static/startbild.jpg'
 import MobileContext from '../assets/MobileContext'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'

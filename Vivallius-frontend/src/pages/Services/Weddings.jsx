@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import MobileContext from '../../assets/MobileContext'
 import ContactButton from '../../components/ContactButton/ContactButton.jsx'
 
-import Sample from '../../media/static/linda brud-5.jpg'
+import Sample from '../../assets/media/static/linda brud-5.jpg'
 
 function Weddings() {
     const { isMobile } = useContext(MobileContext)

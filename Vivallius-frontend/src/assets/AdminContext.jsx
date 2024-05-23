@@ -4,7 +4,7 @@ const AdminContext = createContext()
 
 export const AdminProvider = ({ children }) => {
     const [context, setContext] = useState({
-        isLoggedIn: true,
+        isLoggedIn: false,
         token: "",
         tokenCreateTime: null
     })

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 namespace VivalliusWebb_Services.Services;
 public class FileStorageManager : IDisposable
 {
-    private string basePath = $"./assets";
+    private string basePath = $"./assets/img";
     private IFormFile _file;
     private bool disposedValue;
 
@@ -28,13 +28,17 @@ public class FileStorageManager : IDisposable
         {
             try
             {
-                if (!Directory.Exists($"{basePath}/img/"))
+                if (!Directory.Exists($"{basePath}"))
                 {
-                    Directory.CreateDirectory($"{basePath}/img/");
+                    Directory.CreateDirectory($"{basePath}");
                 }
                 filePath = (iteration == 0) ?
-                    $"{basePath}/img/{_file.FileName}" : $"{basePath}/img/{_file.FileName}_{iteration}";
+                    $"{basePath}/{_file.FileName}" : $"{basePath}/{_file.FileName}_{iteration}";
+                _logs.LogInformation($"Filepath saved: {filePath}");
                 isSuccessfullySaved = await TryPerformSaveAsync(filePath);
+
+                if (isSuccessfullySaved) _logs.LogInformation("The file was successfully saved!");
+                else _logs.LogInformation("The file was not saved...");
             }
             catch (Exception ex)
             {
@@ -56,10 +60,8 @@ public class FileStorageManager : IDisposable
         using (FileStream fs = new FileStream(filePath, FileMode.CreateNew, FileAccess.ReadWrite))
         {
             await _file.CopyToAsync(fs);
-            fs.Position = 0;
-            await fs.FlushAsync();
-
-            return true;
+            if (File.Exists(filePath)) return true;
+            return false;
         }
     }
 

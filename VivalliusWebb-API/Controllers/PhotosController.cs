@@ -26,6 +26,7 @@ public class PhotosController : ControllerBase
     {
         var entities = await _db.Photos
             .ToListAsync();
+        if (entities == null || entities.Count == 0) return Results.Ok(new List<PhotoDTO>());
         var Dtos = _mapper.Map<List<PhotoDTO>>(entities);
         return Results.Ok(Dtos);
     }
@@ -59,7 +60,7 @@ public class PhotosController : ControllerBase
             filePath = await fs.SaveImageAsync();
             // Add SQL add struct
             var entity = _mapper.Map<Photo>(photo);
-            entity.PhotoPath = $"src/media/{photo.Image.FileName}";
+            entity.PhotoPath = $"{photo.Image.FileName}";
             if (photo.ModelPersonIds != null && photo.ModelPersonIds.Count > 0)
             {
                 List<ModelPerson> tempStorage = await _db.ModelPersons
