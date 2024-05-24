@@ -1,0 +1,11 @@
+.admin-flex{
+    display: flex;
+    flex-direction: row;
+}
+.admin-flex-clmn{
+    width: 250px;
+    overflow: hidden;
+}
+.admin-flex-clmn img{
+    max-width: 100%;
+}

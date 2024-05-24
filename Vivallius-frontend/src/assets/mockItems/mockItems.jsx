@@ -5,7 +5,7 @@ export function MockPhotos() {
             Title: 'Stål',
             Description: 'Experimenterar med riddarrustning.',
             PhotoTaken: Date.now(),
-            PhotoPath: 'src/assets/MockImages/riddare-1.jpg',
+            PhotoPath: 'src/assets/MockItems/MockImages/riddare-1.jpg',
             ModelPersonIds: []
         },
         {
@@ -13,7 +13,7 @@ export function MockPhotos() {
             Title: 'Lila korsett',
             Description: 'Sofie får levererat boudoir.',
             PhotoTaken: Date.now(),
-            PhotoPath: 'src/assets/MockImages/Sofie-3.jpg',
+            PhotoPath: 'src/assets/MockItems/MockImages/Sofie-3.jpg',
             ModelPersonIds: []
         },
         {
@@ -21,7 +21,7 @@ export function MockPhotos() {
             Title: 'Rosa Parasol',
             Description: 'Alexandrea visar sitt fina parasol för världen.',
             PhotoTaken: Date.now(),
-            PhotoPath: 'src/assets/MockImages/Alexandrea--4.jpg',
+            PhotoPath: 'src/assets/MockItems/MockImages/Alexandrea--4.jpg',
             ModelPersonIds: []
         },
         {
@@ -29,7 +29,7 @@ export function MockPhotos() {
             Title: 'Stugorna',
             Description: 'Sussie bland fina stugor.',
             PhotoTaken: Date.now(),
-            PhotoPath: 'src/assets/MockImages/sussie-1.jpg',
+            PhotoPath: 'src/assets/MockItems/MockImages/sussie-1.jpg',
             ModelPersonIds: []
         },
         {
@@ -37,7 +37,7 @@ export function MockPhotos() {
             Title: 'Bröllop på gården',
             Description: 'Kärlek invid förstukvisten.',
             PhotoTaken: Date.now(),
-            PhotoPath: 'src/assets/MockImages/linda brud-1.jpg',
+            PhotoPath: 'src/assets/MockItems/MockImages/linda brud-1.jpg',
             ModelPersonIds: []
         }
     ]

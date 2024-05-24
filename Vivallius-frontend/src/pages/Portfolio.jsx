@@ -56,7 +56,7 @@ function Portfolio() {
     useEffect(() => {
         const fetchData = () => {
             HttpRequest('1/public/photo', requestOptions)
-                .then((response) => response.json)
+                .then((response) => response.json())
                 .then((json) => {
                     let data = []
                     let even = []

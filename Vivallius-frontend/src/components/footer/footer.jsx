@@ -4,11 +4,11 @@ import MobileContext from '../../assets/MobileContext'
 import { Link } from 'react-router-dom'
 
 {/* IMPORT SOCIAL ICONS */}
-import Facebook from '../../media/static/socials/facebook-32.png'
-import Instagram from '../../media/static/socials/instagram-32.png'
-import Youtube from '../../media/static/socials/youtube.png'
-import Pinterest from '../../media/static/socials/pinterest-32.png'
-import Twitter from '../../media/static/socials/twitter-32.png'
+import Facebook from '../../assets/media/static/socials/facebook-32.png'
+import Instagram from '../../assets/media/static/socials/instagram-32.png'
+import Youtube from '../../assets/media/static/socials/youtube.png'
+import Pinterest from '../../assets/media/static/socials/pinterest-32.png'
+import Twitter from '../../assets/media/static/socials/twitter-32.png'
 
 function Footer() {
     const { isMobile } = useContext(MobileContext)

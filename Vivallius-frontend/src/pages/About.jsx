@@ -1,5 +1,5 @@
 import './styles/About.css'
-import Rickard from '../media/static/Rickard-1.jpg'
+import Rickard from '../assets/media/static/Rickard-1.jpg'
 import { useContext } from 'react'
 import MobileContext from '../assets/MobileContext.jsx'
 import { Link } from 'react-router-dom'

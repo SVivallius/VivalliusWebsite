@@ -2,7 +2,7 @@ import './styles/Category.css'
 import { useContext } from 'react'
 import MobileContext from '../../assets/MobileContext'
 
-import Sample from '../../media/static/Malin-1.jpg'
+import Sample from '../../assets/media/static/Malin-1.jpg'
 import ContactButton from '../../components/ContactButton/ContactButton'
 
 function Modelling() {

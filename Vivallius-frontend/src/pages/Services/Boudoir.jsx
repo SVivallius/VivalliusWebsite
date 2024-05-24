@@ -2,7 +2,7 @@ import './styles/Category.css'
 import { useContext } from 'react'
 import MobileContext from '../../assets/MobileContext.jsx'
 
-import Sample from '../../media/static/carro-4.jpg'
+import Sample from '../../assets/media/static/carro-4.jpg'
 import ContactButton from '../../components/ContactButton/ContactButton'
 
 function Boudoir() {
